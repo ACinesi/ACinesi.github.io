@@ -19,6 +19,30 @@ body{
   font-size: 17px;
 }
 
+.home-menu{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #4c4c4c;
+  display: none;
+  text-align: center;
+  border-bottom-right-radius: 10px;
+}
+
+.home-menu ul{
+  padding: 10px;
+}
+
+.home-menu li{
+    color: beige;
+    font-weight: 900;
+    font-family: 'Source Sans Pro', sans-serif;
+    letter-spacing: -0.035em;
+    line-height: 1em;
+    padding: 10px;
+    list-style: none;
+}
+
 .wrapper{
     height: 100%;
     width: 100%;
@@ -28,7 +52,7 @@ body{
 
 
 .sliding-background{
-    background: url("background.jpg") repeat-x;
+    background: url("images/background.jpg") repeat-x;
     background-size: auto auto;
     height: 100%;
     width: 5076px;

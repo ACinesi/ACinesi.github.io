@@ -15,22 +15,28 @@
 
 <body>
     <div class="navbar">
-        <a href="#">
-            <i class="fa fa-home"></i>
+        <a class="home" href="#">
+            <i class="fas fa-bars"></i>
         </a>
         <div class="navbar-left" style="float: right;z-index: 1;">
-            <a id="git" href="https://github.com/ACinesi" target="_blank">
+            <a class="super-link" href="https://github.com/ACinesi" target="_blank" super-name="github">
                 <i class="fab fa-github"></i>
             </a>
-            <a href="https://www.linkedin.com/in/andrea-cinesi-489067b2" target="_blank">
+            <a class="super-link" href="https://www.linkedin.com/in/andrea-cinesi-489067b2" target="_blank" super-name="linkedin">
                 <i class="fab fa-linkedin"></i>
             </a>
-            <a href="mailto:andrea.cinesi@studio.unibo.it" target="_blank">
+            <a class="super-link" href="mailto:andrea.cinesi@studio.unibo.it" target="_blank" super-name="email">
                 <i class="fas fa-envelope"></i>
             </a>
         </div>
     </div>
     <div class="wrapper">
+        <div class="home-menu">
+            <ul>
+                <li>Who am I?</li>
+                <li><a href="docs/resume.pdf" target="_blank" >>>CLICK ME<<</a></li>
+            </ul>
+        </div>
         <div class="overlay"></div>
         <div class="sliding-background"></div>
         <div class="text-link">
@@ -49,7 +55,33 @@
 
 <script type="text/javascript">
     var firstHover = true;
+    var originalText = "";
     $(document).ready(function () {
+
+        $(".home").click(function () {
+            $(".home-menu").slideToggle("slow");
+        });
+
+        $(".super-link").hover(function () {
+            var superIcon = $(this).children("i").attr("class");
+            var superName = $(this).attr("super-name").toUpperCase();
+            $('.text-wrapper').fadeOut(200, function () {
+                originalText = $(this).text();
+                $('.text-link').children("i").addClass(superIcon);
+                $('.text-link').fadeIn(200);
+                $('.overlay').fadeIn(200);
+                $(this).text(superName).fadeIn(200);
+            })
+        },
+            function () {
+                var superIcon = $(this).children("i").attr("class");
+                $('.text-wrapper').fadeOut(200, function () {
+                    $('.text-link').children("i").removeClass(superIcon);
+                    $('.text-link').fadeOut(200);
+                    $('.overlay').fadeOut(200);
+                    $(this).text(originalText).fadeIn(200);
+                })
+            });
 
 
         $(".text-wrapper").hover(function () {
@@ -63,63 +95,6 @@
                 firstHover = false;
             }
         });
-
-        $(".fa-github").parent().hover(function () {
-            $('.text-wrapper').fadeOut(200, function () {
-                $('.text-link').css("display", "block").fadeIn(200, function () {
-                    $(this).children("i").addClass("fab fa-github");
-                    $('.overlay').fadeIn(200);
-                    $('.text-wrapper').text('GITHUB').fadeIn(200);
-                })
-            })
-        },
-            function () {
-                $('.text-wrapper').fadeOut(200, function () {
-                    $('.text-link').css("display", "none").fadeOut(200, function () {
-                        $(this).children("i").removeClass("fab fa-github");
-                        $('.overlay').fadeOut(200);
-                        $('.text-wrapper').text('Take a breath.').fadeIn(200);
-                    })
-                })
-            });
-
-        $(".fa-linkedin").parent().hover(function () {
-            $('.text-wrapper').fadeOut(200, function () {
-                $('.text-link').css("display", "block").fadeIn(200, function () {
-                    $(this).children("i").addClass("fab fa-linkedin");
-                    $('.overlay').fadeIn(200);
-                    $('.text-wrapper').text('LINKEDIN').fadeIn(200);
-                })
-            })
-        },
-            function () {
-                $('.text-wrapper').fadeOut(200, function () {
-                    $('.text-link').css("display", "none").fadeOut(200, function () {
-                        $(this).children("i").removeClass("fab fa-linkedin");
-                        $('.overlay').fadeOut(200);
-                        $('.text-wrapper').text('Take a breath.').fadeIn(200);
-                    })
-                })
-            });
-
-        $(".fa-envelope").parent().hover(function () {
-            $('.text-wrapper').fadeOut(200, function () {
-                $('.text-link').css("display", "block").fadeIn(200, function () {
-                    $(this).children("i").addClass("fas fa-envelope");
-                    $('.overlay').fadeIn(200);
-                    $('.text-wrapper').text('EMAIL').fadeIn(200);
-                })
-            })
-        },
-            function () {
-                $('.text-wrapper').fadeOut(200, function () {
-                    $('.text-link').css("display", "none").fadeOut(200, function () {
-                        $(this).children("i").removeClass("fas fa-envelope");
-                        $('.overlay').fadeOut(700);
-                        $('.text-wrapper').text('Take a breath.').fadeIn(200);
-                    })
-                })
-            });
 
     });
 </script>
