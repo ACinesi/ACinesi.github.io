@@ -33,6 +33,7 @@ body{
   display: none;
   border-bottom-right-radius: 1rem;
   font-size: 2rem;
+  z-index: 1;
 }
 
 .home-menu ul{
@@ -85,7 +86,8 @@ body{
     text-align: center;
     width: 100%;
     display: none;
-    color: beige
+    color: beige;
+    z-index: 2;
 }
 
   .text {
@@ -95,6 +97,7 @@ body{
     width: 100%;
     text-align: center;
     word-wrap: break-word;
+    z-index: 2;
   }
 
   .footer{
@@ -128,7 +131,7 @@ body{
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-    z-index: 0; /* Specify a stack order in case you're using a different order for other elements */
+    z-index: 1; /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer; /* Add a pointer on hover */
     display: none;
     transition: display 0.6s;
