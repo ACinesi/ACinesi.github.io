@@ -18,7 +18,7 @@
         <a class="home" href="#">
             <i class="fas fa-bars"></i>
         </a>
-        <div class="navbar-left" style="float: right;z-index: 1;">
+        <div class="navbar-right" style="float: right;z-index: 1;">
             <a class="super-link" href="https://github.com/ACinesi" target="_blank" super-name="github">
                 <i class="fab fa-github"></i>
             </a>
@@ -33,8 +33,12 @@
     <div class="wrapper">
         <div class="home-menu">
             <ul>
-                <li>Who am I?</li>
-                <li><a href="docs/resume.pdf" target="_blank" >>>CLICK ME<<</a></li>
+                <li>
+                    <a href="docs/resume.pdf" target="_blank">My resume</a>
+                </li>
+                <li>
+                    <a id="changeBackground" href="#">Change background</a>
+                </li>
             </ul>
         </div>
         <div class="overlay"></div>
@@ -56,7 +60,23 @@
 <script type="text/javascript">
     var firstHover = true;
     var originalText = "";
+    var backgrounds = ["background.jpg", "background2.jpg", "background3.gif", "background4.jpg"];
+    var prevBackground = "background.jpg";
     $(document).ready(function () {
+
+        $("#changeBackground").on("click", function () {
+
+            while (true) {
+                selected = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+                if (selected != prevBackground) {
+                    break;
+                }
+            }
+            prevBackground = selected;
+
+            $(".sliding-background").css("background", "url('images/" + selected + "') repeat-x");
+            $(".sliding-background").css("background-size", "auto 100%");
+        })
 
         $(".home").click(function () {
             $(".home-menu").slideToggle("slow");
@@ -69,7 +89,7 @@
                 originalText = $(this).text();
                 $('.text-link').children("i").addClass(superIcon);
                 $('.text-link').fadeIn(200);
-                $('.overlay').fadeIn(200);
+                $('.overlay').css("display", "block")
                 $(this).text(superName).fadeIn(200);
             })
         },
@@ -78,7 +98,7 @@
                 $('.text-wrapper').fadeOut(200, function () {
                     $('.text-link').children("i").removeClass(superIcon);
                     $('.text-link').fadeOut(200);
-                    $('.overlay').fadeOut(200);
+                    $('.overlay').css("display", "none")
                     $(this).text(originalText).fadeIn(200);
                 })
             });
@@ -86,12 +106,13 @@
 
         $(".text-wrapper").hover(function () {
             if (firstHover) {
-                $(this).animate({ fontSize: '7.00em' }, "slow")
+                var size = $(this).css("fontSize")
+                $(this).animate({ fontSize: '8.00rem' }, "slow")
             }
         }, function () {
             if (firstHover) {
                 $(this).append("Done.");
-                $(this).animate({ fontSize: '4.35em' }, "slow");
+                $(this).animate({ fontSize: '2.00em' }, "slow");
                 firstHover = false;
             }
         });
